@@ -33,7 +33,7 @@ const url = `https://openapi.programming-hero.com/api/news/category/${id}`
 // console.log(url);
 const res = await fetch(url);
 const data = await res.json();
-// console.log(data.data.length);
+console.log(data.data.length);
 displayNewsDetail(data.data);
 // console.log(data.data.category_id);
 
@@ -43,7 +43,8 @@ const detaiContainer = document.getElementById('detail-field');
 detaiContainer.textContent ="";
 toggleSpinner(true);
 const newsAmountFelid = document.getElementById('news-numberField');
-const newsVlaue = details.length;
+console.log(newsAmountFelid)
+ newsAmountFelid.innerText = `Number of News : ${details.length}`;
 
 
 details.forEach((x)=>{
