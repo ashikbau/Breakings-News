@@ -9,6 +9,7 @@ const loadNews = async()=>{
    
 }
 
+
 const displayNews = news =>{
  const newscontainer = document.getElementById('catagory-field')
  
@@ -103,7 +104,7 @@ const modalDetail = (data)=>{
 
 // toggle Spinner part
 const toggleSpinner = isLoading => {
-  console.log(isLoading)
+  // console.log(isLoading)
   const loaderSection = document.getElementById('loadder');
   if(isLoading){
       loaderSection.classList.remove('d-none');
