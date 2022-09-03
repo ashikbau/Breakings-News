@@ -75,12 +75,12 @@ details.forEach((x)=>{
       
     </div>
     <div class="col-sm-4 d-flex justify">
-    <img src="${ img}" class="h-25 w-25 rounded-start" alt="...">
+    <img  src="${ img}" class="h-25 w-25 rounded-start" alt="...">
     <p class="card-text">
     ${name ? name : 'Author not found'}
      
     </p>
-    // <div><h6>${total_view ? total_view : 'Total view Missing here'}</h6></div>
+     <div ><h6 class=" text-center m-5 px-5">'Views'${total_view ? total_view : 'Total view Missing here'}</h6></div>
 
     <div><button class="btn-p"></button></div>
   </div>
