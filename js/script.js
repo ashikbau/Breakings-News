@@ -11,6 +11,7 @@ const loadNews = async()=>{
 
 const displayNews = news =>{
  const newscontainer = document.getElementById('catagory-field')
+ 
     news.forEach(x => {
         const {category_id,category_name}=x;
        
@@ -19,7 +20,7 @@ const displayNews = news =>{
 
         newsList.innerHTML = `
         <li onclick = "loadNewsDetail('${category_id}')"  class="nav-item">
-        <a class="nav-link fw-bold" href="#">${category_name}</a>
+        <a onclick = "toggleSpinner(true)"class="nav-link fw-bold" href="#">${category_name}</a>
       </li>
         `
 newscontainer.appendChild(newsList);
@@ -31,7 +32,7 @@ const url = `https://openapi.programming-hero.com/api/news/category/${id}`
 // console.log(url);
 const res = await fetch(url);
 const data = await res.json();
-console.log(data.data);
+// console.log(data.data.length);
 displayNewsDetail(data.data);
 // console.log(data.data.category_id);
 
@@ -39,10 +40,14 @@ displayNewsDetail(data.data);
 const displayNewsDetail =(details) =>{
 const detaiContainer = document.getElementById('detail-field');
 detaiContainer.textContent ="";
+toggleSpinner(true);
+const newsAmountFelid = document.getElementById('news-numberField');
+const newsVlaue = details.length;
+
 
 details.forEach((x)=>{
   
-  console.log(x)
+
   const {title,details,thumbnail_url,author,total_view}=x
   const{name,img,published_date}=author
 
@@ -70,10 +75,10 @@ details.forEach((x)=>{
     <div class="col-sm-4 d-flex justify">
     <img src="${ img}" class="h-25 w-25 rounded-start" alt="...">
     <p class="card-text">
-    ${name}
+    ${name ? name : 'Author not found'}
      
     </p>
-    <div><h6>${total_view}</h6></div>
+    // <div><h6>${total_view ? total_view : 'Total view Missing here'}</h6></div>
 
     <div><button class="btn-p"></button></div>
   </div>
@@ -84,9 +89,7 @@ details.forEach((x)=>{
   `
 detaiContainer.appendChild(detailDiv);
 })
- 
-
-
+toggleSpinner(false);
 }
 
 const modalDetail = (data)=>{
@@ -98,6 +101,19 @@ const modalDetail = (data)=>{
   
 }
 
+// toggle Spinner part
+const toggleSpinner = isLoading => {
+  console.log(isLoading)
+  const loaderSection = document.getElementById('loadder');
+  if(isLoading){
+      loaderSection.classList.remove('d-none');
+  }
+  else{
+      loaderSection.classList.add('d-none');
+  }
+
+
+}
 
 
 
